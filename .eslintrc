@@ -1,7 +1,0 @@
-{
-    "extends": [
-      "prettier",
-      "prettier/babel",
-      "prettier/react"
-    ]
-  }
