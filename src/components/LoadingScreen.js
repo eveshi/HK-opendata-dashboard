@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react';
-import NProgress from 'nprogress';
-import {
-  Box,
-  LinearProgress,
-  makeStyles
-} from '@material-ui/core';
+import React, { useEffect } from 'react'
+import NProgress from 'nprogress'
+import { Box, LinearProgress, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,20 +11,20 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     justifyContent: 'center',
     minHeight: '100%',
-    padding: theme.spacing(3)
-  }
-}));
+    padding: theme.spacing(3),
+  },
+}))
 
 const LoadingScreen = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   useEffect(() => {
-    NProgress.start();
+    NProgress.start()
 
     return () => {
-      NProgress.done();
-    };
-  }, []);
+      NProgress.done()
+    }
+  }, [])
 
   return (
     <div className={classes.root}>
@@ -36,7 +32,7 @@ const LoadingScreen = () => {
         <LinearProgress />
       </Box>
     </div>
-  );
-};
+  )
+}
 
-export default LoadingScreen;
+export default LoadingScreen

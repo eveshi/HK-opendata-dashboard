@@ -1,12 +1,12 @@
-import React from 'react';
-import { Divider } from '@material-ui/core';
-import Heading from './Heading';
-import Paragraph from './Paragraph';
-import List from './List';
-import ListItem from './ListItem';
-import Blockquote from './Blockquote';
-import Code from './Code';
-import InlineCode from './InlineCode';
+import React from 'react'
+import { Divider } from '@material-ui/core'
+import Heading from './Heading'
+import Paragraph from './Paragraph'
+import List from './List'
+import ListItem from './ListItem'
+import Blockquote from './Blockquote'
+import Code from './Code'
+import InlineCode from './InlineCode'
 
 const components = {
   h1: (props) => <Heading variant="h1" {...props} />,
@@ -22,7 +22,7 @@ const components = {
   p: Paragraph,
   blockquote: Blockquote,
   code: Code,
-  inlineCode: InlineCode
-};
+  inlineCode: InlineCode,
+}
 
-export default components;
+export default components

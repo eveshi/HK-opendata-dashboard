@@ -36,12 +36,12 @@ const App = () => {
           <SnackbarProvider dense maxSnack={3}>
             <Router history={history}>
               {/* <AuthProvider> */}
-                {/* <GlobalStyles />
+              {/* <GlobalStyles />
                 <ScrollReset />
                 <GoogleAnalytics />
                 <CookiesNotification />
                 <SettingsNotification /> */}
-                {renderRoutes(routes)}
+              {renderRoutes(routes)}
               {/* </AuthProvider> */}
             </Router>
           </SnackbarProvider>

@@ -1,17 +1,9 @@
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Hidden,
-  IconButton,
-  Link,
-  makeStyles
-} from '@material-ui/core';
-import { Menu as MenuIcon } from 'react-feather';
-import Logo from 'src/components/Logo';
+import React from 'react'
+import { Link as RouterLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { AppBar, Box, Toolbar, Hidden, IconButton, Link, makeStyles } from '@material-ui/core'
+import { Menu as MenuIcon } from 'react-feather'
+import Logo from 'src/components/Logo'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,27 +11,24 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    zIndex: theme.zIndex.drawer + 100
+    zIndex: theme.zIndex.drawer + 100,
   },
   toolbar: {
-    height: 64
+    height: 64,
   },
   link: {
-    fontWeight: theme.typography.fontWeightMedium
-  }
-}));
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+}))
 
 const TopBar = ({ onMobileNavOpen }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <AppBar className={classes.root}>
       <Toolbar className={classes.toolbar}>
         <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            onClick={onMobileNavOpen}
-          >
+          <IconButton color="inherit" onClick={onMobileNavOpen}>
             <MenuIcon />
           </IconButton>
         </Hidden>
@@ -48,10 +37,7 @@ const TopBar = ({ onMobileNavOpen }) => {
             <Logo />
           </RouterLink>
         </Hidden>
-        <Box
-          ml={2}
-          flexGrow={1}
-        />
+        <Box ml={2} flexGrow={1} />
         <Link
           className={classes.link}
           color="textSecondary"
@@ -64,15 +50,15 @@ const TopBar = ({ onMobileNavOpen }) => {
         </Link>
       </Toolbar>
     </AppBar>
-  );
-};
+  )
+}
 
 TopBar.propTypes = {
-  onMobileNavOpen: PropTypes.func
-};
+  onMobileNavOpen: PropTypes.func,
+}
 
 TopBar.defaultProps = {
-  onMobileNavOpen: () => {}
-};
+  onMobileNavOpen: () => {},
+}
 
-export default TopBar;
+export default TopBar

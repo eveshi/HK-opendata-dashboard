@@ -1,9 +1,5 @@
-import React, {
-  useRef,
-  useState,
-  useEffect
-} from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import {
   Avatar,
   Box,
@@ -17,60 +13,51 @@ import {
   SvgIcon,
   Tooltip,
   Typography,
-  makeStyles
-} from '@material-ui/core';
-import {
-  Bell as BellIcon,
-  Package as PackageIcon,
-  MessageCircle as MessageIcon,
-  Truck as TruckIcon
-} from 'react-feather';
-import { useDispatch, useSelector } from 'src/store';
-import { getNotifications } from 'src/slices/notification';
+  makeStyles,
+} from '@material-ui/core'
+import { Bell as BellIcon, Package as PackageIcon, MessageCircle as MessageIcon, Truck as TruckIcon } from 'react-feather'
+import { useDispatch, useSelector } from 'src/store'
+import { getNotifications } from 'src/slices/notification'
 
 const iconsMap = {
   order_placed: PackageIcon,
   new_message: MessageIcon,
-  item_shipped: TruckIcon
-};
+  item_shipped: TruckIcon,
+}
 
 const useStyles = makeStyles((theme) => ({
   popover: {
-    width: 320
+    width: 320,
   },
   icon: {
     backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText
-  }
-}));
+    color: theme.palette.secondary.contrastText,
+  },
+}))
 
 const Notifications = () => {
-  const classes = useStyles();
-  const { notifications } = useSelector((state) => state.notifications);
-  const ref = useRef(null);
-  const dispatch = useDispatch();
-  const [isOpen, setOpen] = useState(false);
+  const classes = useStyles()
+  const { notifications } = useSelector((state) => state.notifications)
+  const ref = useRef(null)
+  const dispatch = useDispatch()
+  const [isOpen, setOpen] = useState(false)
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   useEffect(() => {
-    dispatch(getNotifications());
-  }, [dispatch]);
+    dispatch(getNotifications())
+  }, [dispatch])
 
   return (
     <>
       <Tooltip title="Notifications">
-        <IconButton
-          color="inherit"
-          ref={ref}
-          onClick={handleOpen}
-        >
+        <IconButton color="inherit" ref={ref} onClick={handleOpen}>
           <SvgIcon>
             <BellIcon />
           </SvgIcon>
@@ -79,7 +66,7 @@ const Notifications = () => {
       <Popover
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'center'
+          horizontal: 'center',
         }}
         classes={{ paper: classes.popover }}
         anchorEl={ref.current}
@@ -87,19 +74,13 @@ const Notifications = () => {
         open={isOpen}
       >
         <Box p={2}>
-          <Typography
-            variant="h5"
-            color="textPrimary"
-          >
+          <Typography variant="h5" color="textPrimary">
             Notifications
           </Typography>
         </Box>
         {notifications.length === 0 ? (
           <Box p={2}>
-            <Typography
-              variant="h6"
-              color="textPrimary"
-            >
+            <Typography variant="h6" color="textPrimary">
               There are no notifications
             </Typography>
           </Box>
@@ -107,19 +88,12 @@ const Notifications = () => {
           <>
             <List disablePadding>
               {notifications.map((notification) => {
-                const Icon = iconsMap[notification.type];
+                const Icon = iconsMap[notification.type]
 
                 return (
-                  <ListItem
-                    component={RouterLink}
-                    divider
-                    key={notification.id}
-                    to="#"
-                  >
+                  <ListItem component={RouterLink} divider key={notification.id} to="#">
                     <ListItemAvatar>
-                      <Avatar
-                        className={classes.icon}
-                      >
+                      <Avatar className={classes.icon}>
                         <SvgIcon fontSize="small">
                           <Icon />
                         </SvgIcon>
@@ -131,19 +105,11 @@ const Notifications = () => {
                       secondary={notification.description}
                     />
                   </ListItem>
-                );
+                )
               })}
             </List>
-            <Box
-              p={1}
-              display="flex"
-              justifyContent="center"
-            >
-              <Button
-                component={RouterLink}
-                size="small"
-                to="#"
-              >
+            <Box p={1} display="flex" justifyContent="center">
+              <Button component={RouterLink} size="small" to="#">
                 Mark all as read
               </Button>
             </Box>
@@ -151,7 +117,7 @@ const Notifications = () => {
         )}
       </Popover>
     </>
-  );
-};
+  )
+}
 
-export default Notifications;
+export default Notifications

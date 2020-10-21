@@ -1,144 +1,112 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {
-  Box,
-  Drawer,
-  Hidden,
-  List,
-  makeStyles
-} from '@material-ui/core';
-import Logo from 'src/components/Logo';
-import NavItem from './NavItem';
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { Box, Drawer, Hidden, List, makeStyles } from '@material-ui/core'
+import Logo from 'src/components/Logo'
+import NavItem from './NavItem'
 
 const items = [
   {
     title: 'Welcome',
-    href: '/docs/welcome'
+    href: '/docs/welcome',
   },
   {
     title: 'Getting Started',
-    href: '/docs/getting-started'
+    href: '/docs/getting-started',
   },
   {
     title: 'Environment Variables',
-    href: '/docs/environment-variables'
+    href: '/docs/environment-variables',
   },
   {
     title: 'Deployment',
-    href: '/docs/deployment'
+    href: '/docs/deployment',
   },
   {
     title: 'Analytics',
-    href: '/docs/analytics'
+    href: '/docs/analytics',
   },
   {
     title: 'API Calls',
-    href: '/docs/api-calls'
+    href: '/docs/api-calls',
   },
   {
     title: 'Authentication',
-    href: '/docs/authentication'
+    href: '/docs/authentication',
   },
   {
     title: 'Routing',
-    href: '/docs/routing'
+    href: '/docs/routing',
   },
   {
     title: 'Settings',
-    href: '/docs/settings'
+    href: '/docs/settings',
   },
   {
     title: 'State Management',
-    href: '/docs/state-management'
+    href: '/docs/state-management',
   },
   {
     title: 'Theming',
-    href: '/docs/theming'
+    href: '/docs/theming',
   },
   {
     title: 'Support',
-    href: '/docs/support'
+    href: '/docs/support',
   },
   {
     title: 'Changelog',
-    href: '/docs/changelog'
-  }
-];
+    href: '/docs/changelog',
+  },
+]
 
 function renderNavItems({ items, depth = 0 }) {
-  return (
-    <List disablePadding>
-      {items.reduce(
-        (acc, item) => reduceChildRoutes({ acc, item, depth }),
-        []
-      )}
-    </List>
-  );
+  return <List disablePadding>{items.reduce((acc, item) => reduceChildRoutes({ acc, item, depth }), [])}</List>
 }
 
-function reduceChildRoutes({
-  acc,
-  item,
-  depth = 0
-}) {
+function reduceChildRoutes({ acc, item, depth = 0 }) {
   if (item.items) {
     acc.push(
-      <NavItem
-        depth={depth}
-        key={item.href}
-        title={item.title}
-      >
+      <NavItem depth={depth} key={item.href} title={item.title}>
         {renderNavItems({
           items: item.items,
-          depth: depth + 1
+          depth: depth + 1,
         })}
-      </NavItem>
-    );
+      </NavItem>,
+    )
   } else {
-    acc.push(
-      <NavItem
-        depth={depth}
-        href={item.href}
-        key={item.href}
-        title={item.title}
-      />
-    );
+    acc.push(<NavItem depth={depth} href={item.href} key={item.href} title={item.title} />)
   }
 
-  return acc;
+  return acc
 }
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {
-    width: 256
+    width: 256,
   },
   desktopDrawer: {
     width: 256,
     top: 64,
-    height: 'calc(100% - 64px)'
-  }
-}));
+    height: 'calc(100% - 64px)',
+  },
+}))
 
 const NavBar = ({ onMobileClose, openMobile }) => {
-  const classes = useStyles();
-  const location = useLocation();
+  const classes = useStyles()
+  const location = useLocation()
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
-      onMobileClose();
+      onMobileClose()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname]);
+  }, [location.pathname])
 
   const content = (
-    <Box
-      height="100%"
-      display="flex"
-      flexDirection="column"
-    >
+    <Box height="100%" display="flex" flexDirection="column">
       <Hidden lgUp>
         <Box p={2}>
           <RouterLink to="/">
@@ -146,11 +114,9 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           </RouterLink>
         </Box>
       </Hidden>
-      <Box p={2}>
-        {renderNavItems({ items })}
-      </Box>
+      <Box p={2}>{renderNavItems({ items })}</Box>
     </Box>
-  );
+  )
 
   return (
     <>
@@ -166,22 +132,17 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         </Drawer>
       </Hidden>
       <Hidden mdDown>
-        <Drawer
-          anchor="left"
-          classes={{ paper: classes.desktopDrawer }}
-          open
-          variant="persistent"
-        >
+        <Drawer anchor="left" classes={{ paper: classes.desktopDrawer }} open variant="persistent">
           {content}
         </Drawer>
       </Hidden>
     </>
-  );
-};
+  )
+}
 
 NavBar.propTypes = {
   onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
-};
+  openMobile: PropTypes.bool,
+}
 
-export default NavBar;
+export default NavBar

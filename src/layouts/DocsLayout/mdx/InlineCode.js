@@ -1,5 +1,5 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import React from 'react'
+import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -8,19 +8,14 @@ const useStyles = makeStyles(() => ({
     color: '#1a1a1a',
     fontFamily: "Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace",
     fontSize: 14,
-    backgroundColor: 'rgb(255,229,100)'
-  }
-}));
+    backgroundColor: 'rgb(255,229,100)',
+  },
+}))
 
 const CodeInline = (props) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  return (
-    <code
-      className={classes.root}
-      {...props}
-    />
-  );
-};
+  return <code className={classes.root} {...props} />
+}
 
-export default CodeInline;
+export default CodeInline
